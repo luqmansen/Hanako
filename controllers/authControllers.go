@@ -19,10 +19,10 @@ var CreateAccount = func(w http.ResponseWriter, r *http.Request) {
 	u.Respond(w, resp)
 }
 
-var Authenticate = func(w http.ResponseWriter, r *http.Request){
+var Authenticate = func(w http.ResponseWriter, r *http.Request) {
 
 	account := &models.Account{}
-	err:= json.NewDecoder(r.Body).Decode(account)
+	err := json.NewDecoder(r.Body).Decode(account)
 	if err != nil {
 		u.Respond(w, u.Message(false, "Invalid Request"))
 		return
@@ -30,33 +30,3 @@ var Authenticate = func(w http.ResponseWriter, r *http.Request){
 	resp := models.Login(account.Email, account.Password)
 	u.Respond(w, resp)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

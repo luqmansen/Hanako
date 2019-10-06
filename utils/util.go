@@ -5,15 +5,16 @@ import (
 	"log"
 	"net/http"
 )
+
 /* This file contain utils function to build json message
-	and return a json response.
+and return a json response.
 */
 
-func Message(status bool, message string) (map[string]interface{}){
-	return map[string]interface{} {"status" : status, "message" : message}
+func Message(status bool, message string) map[string]interface{} {
+	return map[string]interface{}{"status": status, "message": message}
 }
 
-func Respond(w http.ResponseWriter, data map[string]interface{}){
+func Respond(w http.ResponseWriter, data map[string]interface{}) {
 	w.Header().Add("Content-Type", "application/json")
 	err := json.NewEncoder(w).Encode(data)
 	if err != nil {
