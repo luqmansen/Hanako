@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/gorilla/mux"
-	"github.com/luqmansen/anime-pedia/app"
-	"github.com/luqmansen/anime-pedia/controllers"
+	"github.com/luqmansen/hanako/app"
+	"github.com/luqmansen/hanako/controllers"
 	"net/http"
 	"os"
 )

@@ -3,7 +3,7 @@ package models
 import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/jinzhu/gorm"
-	u "github.com/luqmansen/anime-pedia/utils"
+	u "github.com/luqmansen/hanako/utils"
 	"golang.org/x/crypto/bcrypt"
 	"os"
 	"strings"

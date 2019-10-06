@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/luqmansen/anime-pedia/models"
-	u "github.com/luqmansen/anime-pedia/utils"
+	"github.com/luqmansen/hanako/models"
+	u "github.com/luqmansen/hanako/utils"
 	"net/http"
 )
 
