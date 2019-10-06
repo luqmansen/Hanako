@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="234d162b-5a61-4c77-a142-14bbaa851c9e" name="Default Changelist" comment="" />
+    <list default="true" id="234d162b-5a61-4c77-a142-14bbaa851c9e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../hanako/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hanako/app/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/app/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hanako/controllers/animeControllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/controllers/animeControllers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hanako/controllers/contactControllers.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hanako/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hanako/models/anime.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/models/anime.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hanako/models/base.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/models/base.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hanako/models/contact.go" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +60,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build github.com/luqmansen/hanako">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="hanako" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -67,6 +76,14 @@
       <package value="github.com/luqmansen/anime-pedia" />
       <method v="2" />
     </configuration>
+    <configuration name="go build github.com/luqmansen/hanako" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hanako" />
+      <working_directory value="$PROJECT_DIR$/../hanako/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/../hanako/main.go" />
+      <package value="github.com/luqmansen/hanako" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
       <module name="hanako" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -77,6 +94,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build github.com/luqmansen/hanako" />
         <item itemvalue="Go Build.go build github.com/luqmansen/anime-pedia" />
       </list>
     </recent_temporary>
