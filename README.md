@@ -1,49 +1,31 @@
-# ProjectAmbis
+# Project Hanako
 
-Basically, we trying to stacking up some of popular technology stack into one system.
-Most of tech that i list below i haven't even touch it, so this also part of my learning path. 
+Formerly, this is [ProjectAmbis](https://luqmansen.github.io/project-ambis-started/), an abstract project that i want to make but it was too abstract and i haven't any idea where to start, now its here
 
 ## Getting Started
 
-### Some Technology we're going to use
-
-#### 
-- [React](https://reactjs.org/) - frontend
-- [Django](https://www.djangoproject.com/) - for backend
-- [PostgreSQL](https://www.postgresql.org/) - db ofc
-- [Apache Cassandra](http://cassandra.apache.org) - Heavy duty db, for fun ofcourse
-- [Mongodb](https://www.mongodb.com/) - nosql db
-- [Redis](https://redis.io/)
-- if possible to use AWS Redshift (come to later)
-- [Apache Kafka](https://kafka.apache.org/) - message broker 
-- apache mesos - cluster management (not sure about this, come to this later)
-- [Postman](https://www.getpostman.com/) - API Development
-
-#### 
-- Agile Development with [Scrum](https://www.scrum.org/), kanban, scrumban
-- [git](https://git-scm.com) - for version control
-- [Docker](https://www.docker.com/) - containerization -> docker swarm for container orchestration
-- [Ansible](https://www.ansible.com/) - Configuration Management
-- [Jenkins](https://jenkins.io/) - Contionus integration
-- [Nagios](https://www.nagios.org/) - Server Monitoring
-- [NGINX](https://www.nginx.com/) - Web Server + Load Balancer
-- [Selenium](https://www.seleniumhq.org/) - Sofware testing
+### What is This ?
+For now, this is a RESTful Webservice API for an anime database
 
 ### Todo
-* Start with backend, working on django as backend framework right now
-* making gh pages for project progress
+* Create a simple front end for api consumer
+* Implementing another [techstack](https://github.com/luqmansen/hanako/blob/master/docs/Techstack.md)
 
 ### Progress
-I planned to make logbook on gh pages, but it isn't finished yet, until then i post the logbook for new things that i learn on my medium [here](https://medium.com/@luqmansen)
+* Basic REST APIs functionality working
+* PostgreSQL implemented
+* JWT Implemented
+* Another progress you can check it on my personal blog [here](https://luqmansen.github.io)
 
-
+### Contribution
+For now, just fork it and create a pull request, i haven't made any contribution guidelines right now
 
 ## Authors
 
 * **Luqmansen** - [luqmansen](https://github.com/luqmansen)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/luqmansen/hanako/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/luqmansen/hanako/blob/master/docs/LICENSE.md) file for details
