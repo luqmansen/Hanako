@@ -46,10 +46,21 @@ func (anime *Anime) AddEntry() map[string]interface{} {
 	return resp
 }
 
+func GetAll() []*Anime {
+
+	animes := make([]*Anime, 0)
+	err := getDB().Limit(20).Find(&animes).Error
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return animes
+}
+
 func GetByTitle(title string) []*Anime {
 
 	animes := make([]*Anime, 0)
-	err := getDB().Table("anime").Where("name ILIKE '%?%'", title).Find(&animes).Error
+	err := getDB().Table("animes").Where("name ILIKE '%' || ? || '%'",title ).Find(&animes).Error
 	if err != nil {
 		fmt.Println(err)
 		return nil
@@ -68,13 +79,4 @@ func GetByID(ID uint) *Anime {
 	return animes
 }
 
-func GetAll() []*Anime {
 
-	animes := make([]*Anime, 0)
-	err := getDB().Limit(20).Find(&animes).Error
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return animes
-}

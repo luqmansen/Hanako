@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="234d162b-5a61-4c77-a142-14bbaa851c9e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../hanako/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hanako/app/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/app/auth.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hanako/controllers/animeControllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/controllers/animeControllers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hanako/controllers/authControllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/controllers/authControllers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hanako/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hanako/models/accounts.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/models/accounts.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hanako/models/anime.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/models/anime.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hanako/models/base.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/models/base.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hanako/utils/util.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/utils/util.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
