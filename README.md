@@ -1,6 +1,6 @@
 # Project Hanako
 
-![](docs/assets/hanako.png)
+![](docs/assets/hanako-small.png)
 
 Formerly, this was [ProjectAmbis](https://luqmansen.github.io/project-ambis-started/), an abstract project that i want to make but it was too abstract that i haven't any idea where to start, now its here
 
