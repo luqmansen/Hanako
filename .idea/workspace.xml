@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="234d162b-5a61-4c77-a142-14bbaa851c9e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../hanako/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hanako/controllers/animeControllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/controllers/animeControllers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hanako/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hanako/models/anime.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/models/anime.go" afterDir="false" />
-    </list>
+    <list default="true" id="234d162b-5a61-4c77-a142-14bbaa851c9e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,5 +106,16 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/../hanako/models/anime.go</url>
+          <line>59</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -18,12 +18,11 @@ var GetAll = func(w http.ResponseWriter, r *http.Request) {
 
 var GetByTitle = func(w http.ResponseWriter, r *http.Request){
 
-	//params := mux.Vars(r)
 	keyword := r.URL.Query().Get("search")
-	//if err != nil {
-	//	u.Respond(w, u.Message(false, "There was an error in your request"))
-	//}
 	data:= models.GetByTitle(keyword)
+	if data == nil {
+		u.Respond(w, u.Message(false, "Not Found"))
+	}
 	resp:= u.Message(true, "Success")
 	resp["data"] = data
 	u.Respond(w, resp)
@@ -39,6 +38,9 @@ var GetById = func(w http.ResponseWriter, r * http.Request) {
 	}
 
 	data:= models.GetByID(uint(id))
+	if data == nil{
+		u.Respond(w, u.Message(false, "Not Found"))
+	}
 	resp := u.Message(true, "Success")
 	resp["data"] = data
 	u.Respond(w, resp)
