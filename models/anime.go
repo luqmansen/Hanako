@@ -59,6 +59,17 @@ func GetByTitle(title string) ([]*Anime){
 	return animes
 }
 
+func GetByID(ID string) ([]*Anime){
+
+	animes := make([]*Anime, 0)
+	err := getDB().Table("anime").Where("ID = ?",ID).Find(&animes).Error
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return animes
+}
+
 func GetAll() ([]*Anime){
 
 	animes := make([]*Anime, 0)

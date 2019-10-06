@@ -11,12 +11,14 @@ import (
 
 func main(){
 
-	router := mux.NewRouter()
-	router.Use(app.JwtAuthentication)
+	r := mux.NewRouter()
 
-	router.HandleFunc("/api/user/new", controllers.CreateAccount).Methods("POST")
-	router.HandleFunc("/api/user/login", controllers.Authenticate).Methods("POST")
-	router.HandleFunc("/api/anime/all", controllers.GetAll).Methods("GET")
+	api := r.PathPrefix("/api/v1").Subrouter()
+	api.Use(app.JwtAuthentication)
+
+	api.HandleFunc("/user/new", controllers.CreateAccount).Methods("POST")
+	api.HandleFunc("/user/login", controllers.Authenticate).Methods("POST")
+	api.HandleFunc("/anime/all", controllers.GetAll).Methods("GET")
 
 
 	port := os.Getenv("PORT")
@@ -26,7 +28,7 @@ func main(){
 
 	fmt.Println(port)
 
-	err := http.ListenAndServe(":" + port, router)
+	err := http.ListenAndServe(":" + port, r)
 	if err != nil {
 		fmt.Println(err)
 	}
