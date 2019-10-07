@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/luqmansen/hanako/controllers"
+	"github.com/luqmansen/hanako/utils"
 	"net/http"
 	"os"
 )
@@ -21,23 +22,14 @@ func main() {
 
 	api.HandleFunc("/anime/all", controllers.GetAll).Methods("GET")
 	api.HandleFunc("/anime/{id}", controllers.GetById).Methods("GET")
-	api.Path("/anime").Queries("search", "{title}").HandlerFunc(controllers.GetByTitle).Methods("GET")
-	api.Walk(func(route *mux.Route, router *mux.Router, ancestors []*mux.Route) error {
-		t, err := route.GetPathTemplate()
-		if err != nil {
-			return err
-		}
-		fmt.Println(t)
-		return nil
-	})
-	http.Handle("/", api)
+	api.Path("/anime/search/q").Queries("title", "{title}").HandlerFunc(controllers.GetByTitle).Methods("GET")
 
+	utils.Walk(api)
 
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
 	}
-
 	fmt.Println(port)
 
 	err := http.ListenAndServe(":"+port, r)

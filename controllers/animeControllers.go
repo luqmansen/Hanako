@@ -18,14 +18,15 @@ var GetAll = func(w http.ResponseWriter, r *http.Request) {
 
 var GetByTitle = func(w http.ResponseWriter, r *http.Request){
 
-	keyword := r.URL.Query().Get("search")
+	keyword := r.URL.Query().Get("title")
 	data:= models.GetByTitle(keyword)
 	if data == nil {
 		u.Respond(w, u.Message(false, "Not Found"))
+	} else{
+		resp:= u.Message(true, "Success")
+		resp["data"] = data
+		u.Respond(w, resp)
 	}
-	resp:= u.Message(true, "Success")
-	resp["data"] = data
-	u.Respond(w, resp)
 }
 
 
@@ -35,13 +36,12 @@ var GetById = func(w http.ResponseWriter, r * http.Request) {
 	id, err := strconv.Atoi(params["id"])
 	if err != nil {
 		u.Respond(w, u.Message(false, "There was an error in your request"))
-	}
-
-	data:= models.GetByID(uint(id))
-	if data == nil{
+	} else if 	data:= models.GetByID(uint(id)); data == nil{
 		u.Respond(w, u.Message(false, "Not Found"))
+	} else{
+
+		resp := u.Message(true, "Success")
+		resp["data"] = data
+		u.Respond(w, resp)
 	}
-	resp := u.Message(true, "Success")
-	resp["data"] = data
-	u.Respond(w, resp)
 }

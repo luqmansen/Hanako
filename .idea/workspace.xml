@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="234d162b-5a61-4c77-a142-14bbaa851c9e" name="Default Changelist" comment="" />
+    <list default="true" id="234d162b-5a61-4c77-a142-14bbaa851c9e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../hanako/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hanako/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hanako/controllers/animeControllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/controllers/animeControllers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hanako/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hanako/models/base.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hanako/models/base.go" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="anime-pedia" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -111,9 +120,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/../hanako/models/anime.go</url>
-          <line>59</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/../hanako/controllers/animeControllers.go</url>
+          <line>18</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
