@@ -14,11 +14,12 @@ For now, this is a RESTful Webservice API for an anime database
 * [Go](https://golang.org/)
 * [Postgresql](https://www.postgresql.org)
 
-#### Packages ( For Development)
+#### Packages Depencency( For Development)
 * gorilla/mux
 * jinzhu/gorm
 * dgrijalva/jwt-go
 * joho/godotenv
+* tools/godep
 
 ## Instalation
 ```bash
@@ -57,6 +58,54 @@ Access this from on wherever your deployment is
 <br>
 
 Other stuff still on development, fork this repo and help me :D
+
+## Deployment
+
+### Heroku 
+___
+##### Prequites
+1. Heroku-cli installed on your machine 
+    ```
+    curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+    ```
+2. Create your app name
+    ```
+    heroku create <your_app_name>
+    ```
+3. Heroku will do its job, then push it
+    ```
+    git push heroku master
+    ```
+4. Add Postgresql addons on heroku
+    ```
+    heroku addons:create heroku-postgresql:hobby-dev
+    ```
+   
+5. Now open heroku on the browser, go to setting -> Reveal Config vars
+![](docs/assets/heroku-config-vars.png) <br>
+Look at the ```DATABASE_URL```
+The format is 
+    ```
+    postgres://username:password@host/dbName
+    ```
+
+6. Add the config key and value <br>
+ ![](docs/assets/create-config.png)
+___
+##### Importing the database
+In case you working with local database and want to import it to the remote
+
+1. Dump your local database
+    ```
+    $ PGPASSWORD=yourpassword pg_dump -Fc --no-acl --no-owner -h localhost -U <your_db_username>  <your_dbname> > database.dmp
+    ```
+2. Restore it to remote database
+    ``` 
+    pg_restore --verbose --clean --no-owner --no-acl -h <hostname> -U <username> -d <database_name> -p 5432 database.dump
+    ```
+3. Enter the password on prompted line
+4. Cool :D
+
 
 ## Roadmap and Progress 
 Planned to create a wiki, for now, you can read it on my [blog](https://luqmansen.github.io) for the progress that i made while trying to implementing another [techstack](https://github.com/luqmansen/hanako/blob/master/docs/Techstack.md), you can help here :D
