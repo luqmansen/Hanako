@@ -7,6 +7,11 @@ Formerly, this was [ProjectAmbis](https://luqmansen.github.io/project-ambis-star
 ### What is This ?
 For now, this is a RESTful Webservice API for an anime database
 
+## Demo
+* Host : https://hanako.luqmansen.me/ <br>
+Index will return 404, user other endpoints, eg:
+    - https://hanako.luqmansen.me/api/v1/anime/all
+    - https://hanako.luqmansen.me/api/v1/anime/search/q?title=kimi
 
 ## Prequisites
 
@@ -24,8 +29,6 @@ For now, this is a RESTful Webservice API for an anime database
 ## Instalation
 ```bash
 git clone https://github.com/luqmansen/Hanako.git
-cd Hanako
-go run main.go
 ```
 
 ### Setup
@@ -43,19 +46,25 @@ token_password = jwt_Secret_Token;
 ```
 
 ## Usage
-Access this from on wherever your deployment is
+Run the server
+```markdown
+cd Hanako
+go run main.go
 ```
-/api/v1/user/new
-/api/v1/user/login
-/api/v1/anime/all
-/api/v1/anime/{id}
-/api/v1/anime/search
+Access this from on wherever your deployment is, in this example, on localhost
+```
+localhost:8080/api/v1/user/new
+localhost:8080/api/v1/user/login
+localhost:8080/api/v1/anime/all
+localhost:8080/api/v1/anime/{id}
+localhost:8080/api/v1/anime/search
 
 ```
 
 #### Query keyword 
-```/api/v1/anime/search?title=anime_to_find``` 
-<br>
+```
+/api/v1/anime/search/q?title=anime_to_find
+``` 
 
 Other stuff still on development, fork this repo and help me :D
 
