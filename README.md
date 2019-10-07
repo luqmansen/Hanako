@@ -54,7 +54,9 @@ Access this from on wherever your deployment is
 
 #### Query keyword 
 ```/api/v1/anime/search?title=anime_to_find``` 
+<br>
 
+Other stuff still on development, fork this repo and help me :D
 
 ## Roadmap and Progress 
 Planned to create a wiki, for now, you can read it on my [blog](https://luqmansen.github.io) for the progress that i made while trying to implementing another [techstack](https://github.com/luqmansen/hanako/blob/master/docs/Techstack.md), you can help here :D
