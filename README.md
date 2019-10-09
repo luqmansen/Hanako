@@ -64,6 +64,7 @@ localhost:8080/api/v1/anime/search
 #### Query keyword 
 ```
 /api/v1/anime/search/q?title=anime_to_find
+/api/v1/anime/all?show=1000
 ``` 
 
 Other stuff still on development, fork this repo and help me :D

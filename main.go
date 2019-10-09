@@ -13,6 +13,10 @@ import (
 func main() {
 
 	r := mux.NewRouter()
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "docs/index.html")
+	})
+
 
 	api := r.PathPrefix("/api/v1").Subrouter()
 	//api.Use(app.JwtAuthentication)
@@ -20,8 +24,11 @@ func main() {
 	api.HandleFunc("/user/new", controllers.CreateAccount).Methods("POST")
 	api.HandleFunc("/user/login", controllers.Authenticate).Methods("POST")
 
-	api.HandleFunc("/anime/all", controllers.GetAll).Methods("GET")
+	api.Path("/anime/all").Queries("show", "{show}").HandlerFunc(controllers.GetAll).Methods("GET")
+	api.Path("/anime/all").HandlerFunc(controllers.GetAll).Methods("GET")
+
 	api.HandleFunc("/anime/{id}", controllers.GetById).Methods("GET")
+
 	api.Path("/anime/search/q").Queries("title", "{title}").HandlerFunc(controllers.GetByTitle).Methods("GET")
 
 	utils.Walk(api)
@@ -38,3 +45,4 @@ func main() {
 	}
 
 }
+

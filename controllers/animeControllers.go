@@ -10,7 +10,9 @@ import (
 
 var GetAll = func(w http.ResponseWriter, r *http.Request) {
 
-	data := models.GetAll()
+	show := r.URL.Query().Get("show")
+
+	data := models.GetAll(show)
 	if data == nil {
 		u.Respond(w, u.Message(false, "Not Found"))
 	} else{

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	u "github.com/luqmansen/hanako/utils"
+	"strconv"
 )
 
 type Anime struct {
@@ -46,10 +47,15 @@ func (anime *Anime) AddEntry() map[string]interface{} {
 	return resp
 }
 
-func GetAll() []*Anime {
+func GetAll(number string) []*Anime {
 
+	if number == ""{
+		number = "20"
+	} else if _, err:=  strconv.Atoi(number); err != nil{
+		number = "20"
+	}
 	animes := make([]*Anime, 0)
-	err := getDB().Limit(20).Find(&animes).Error
+	err := getDB().Limit(number).Find(&animes).Error
 	if err != nil {
 		fmt.Println(err)
 		return nil

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Project Hanako</title>
+
+</head>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+<style>
+            @font-face {
+        font-family: myFirstFont;
+        src: url(sansation_light.woff);
+        }
+        .anu4 {
+        font-family: myFirstFont;
+        }
+        @font-face {
+                font-family: Roboto;
+                src: url('Roboto-Light-webfont.otf') format('opentype');
+        }
+        .anu2 {
+            font-family: Roboto;
+        }
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        .anu3 {
+            background: #ffffff;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            padding: 50px;
+        }
+        .anu {
+        font-family: 'Tangerine', serif;
+        }
+        img {
+
+        display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 100%;
+
+        }
+    </style>
+
+<body class="anu3">
+<div class="anu3" style="margin:auto;text-align: left; max-width: 800px;">
+<h1 id="projecthanako" style="text-align : center; size : 35px">Project Hanako</h1>
+
+<p><img src="https://raw.githubusercontent.com/luqmansen/Hanako/master/docs/assets/hanako-small.png" alt="" /></p>
+
+<p>Formerly, this was <a href="https://luqmansen.github.io/project-ambis-started/">ProjectAmbis</a>, an abstract project that i want to make but it was too abstract that i haven't any idea where to start, now its here</p>
+
+<h3 id="whatisthis">What is This ?</h3>
+
+<p>For now, this is a RESTful Webservice API for an anime database</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>Access this from on wherever your deployment is, in this example, on this domain</p>
+
+<pre><code>hanako.luqmansen.me/api/v1/user/new
+hanako.luqmansen.me/api/v1/user/login
+hanako.luqmansen.me/api/v1/anime/all
+hanako.luqmansen.me/api/v1/anime/{id}
+hanako.luqmansen.me/api/v1/anime/search
+</code></pre>
+
+<h4 id="querykeyword">Query keyword</h4>
+
+<pre><code>/api/v1/anime/search/q?title=anime_to_find
+/api/v1/anime/all?show=1000
+</code></pre>
+
+<p></p>
+
+<p>Other stuff still on development, fork this repo and help me :D</p>
+</div>
+</body>
+</html>
