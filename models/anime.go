@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	u "github.com/luqmansen/hanako/utils"
+	"net/http"
 	"strconv"
 )
 
@@ -20,18 +21,17 @@ type Anime struct {
 
 func (anime *Anime) Validate() (map[string]interface{}, bool) {
 
-
 	if anime.Name == "" {
-		return u.Message(false, "Name should be on payload"), false
+		return u.Message(http.StatusBadRequest, "Name should be on payload"), false
 	}
 	if anime.Genre == "" {
-		return u.Message(false, "Genre should be on payload"), false
+		return u.Message(http.StatusBadRequest, "Genre should be on payload"), false
 	}
 	if anime.Kind == "" {
-		return u.Message(false, "Kind should be on payload"), false
+		return u.Message(http.StatusBadRequest, "Kind should be on payload"), false
 	}
 
-	return u.Message(true, "success"), true
+	return u.Message(http.StatusOK, "success"), true
 }
 
 func (anime *Anime) AddEntry() map[string]interface{} {
@@ -42,16 +42,16 @@ func (anime *Anime) AddEntry() map[string]interface{} {
 
 	getDB().Create(anime)
 
-	resp := u.Message(true, "success")
+	resp := u.Message(http.StatusOK, "success")
 	resp["anime"] = anime
 	return resp
 }
 
 func GetAll(number string) []*Anime {
 
-	if number == ""{
+	if number == "" {
 		number = "20"
-	} else if _, err:=  strconv.Atoi(number); err != nil{
+	} else if _, err := strconv.Atoi(number); err != nil {
 		number = "20"
 	}
 	animes := make([]*Anime, 0)
@@ -66,7 +66,7 @@ func GetAll(number string) []*Anime {
 func GetByTitle(title string) []*Anime {
 
 	animes := make([]*Anime, 0)
-	err := getDB().Table("animes").Where("name ILIKE '%' || ? || '%'",title ).Find(&animes).Error
+	err := getDB().Table("animes").Where("name ILIKE '%' || ? || '%'", title).Find(&animes).Error
 	if err != nil {
 		fmt.Println(err)
 		return nil
@@ -84,5 +84,3 @@ func GetByID(ID uint) *Anime {
 	}
 	return animes
 }
-
-

@@ -5,6 +5,7 @@ import (
 	"github.com/jinzhu/gorm"
 	u "github.com/luqmansen/hanako/utils"
 	"golang.org/x/crypto/bcrypt"
+	"net/http"
 	"os"
 	"strings"
 )
@@ -24,11 +25,11 @@ type Account struct {
 func (account *Account) Validate() (map[string]interface{}, bool) {
 
 	if !strings.Contains(account.Email, "@") {
-		return u.Message(false, "Email Address is Required"), false
+		return u.Message(http.StatusBadRequest, "Email Address is Required"), false
 	}
 
 	if len(account.Password) < 6 {
-		return u.Message(false, "Password is Required"), false
+		return u.Message(http.StatusBadRequest, "Password is Required"), false
 	}
 
 	temp := &Account{}
@@ -36,14 +37,14 @@ func (account *Account) Validate() (map[string]interface{}, bool) {
 	//	Check for duplicate email
 	err := getDB().Table("accounts").Where("email = ?", account.Email).First(temp).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
-		return u.Message(false, "Connection error, Please Retry"), false
+		return u.Message(http.StatusInternalServerError, "Connection error, Please Retry"), false
 	}
 
 	if temp.Email != "" {
-		return u.Message(false, "Email address already in use by another user."), false
+		return u.Message(http.StatusConflict, "Email address already in use by another user."), false
 	}
 
-	return u.Message(false, "Requirement passed"), true
+	return u.Message(http.StatusOK, "Requirement passed"), true
 
 }
 
@@ -59,7 +60,7 @@ func (account *Account) Create() map[string]interface{} {
 	getDB().Create(account)
 
 	if account.ID <= 0 {
-		return u.Message(false, "Failed To Create Account, connection Error.")
+		return u.Message(http.StatusInternalServerError, "Failed To Create Account, connection Error.")
 	}
 
 	//	Crete new jwt Token for newly created account
@@ -70,7 +71,7 @@ func (account *Account) Create() map[string]interface{} {
 
 	account.Password = "" //Delete pass from memory
 
-	response := u.Message(true, "Account Has Been Created")
+	response := u.Message(http.StatusOK, "Account Has Been Created")
 	response["account"] = account
 	return response
 
@@ -82,14 +83,14 @@ func Login(email, password string) map[string]interface{} {
 	err := getDB().Table("accounts").Where("email = ?", email).First(account).Error
 	if err != nil {
 		if err == gorm.ErrRecordNotFound {
-			return u.Message(false, "Email Address Not Fond")
+			return u.Message(http.StatusNotFound, "Email Address Not Found")
 		}
-		return u.Message(false, "Connection Error, Please Retry")
+		return u.Message(http.StatusInternalServerError, "Connection Error, Please Retry")
 	}
 
 	err = bcrypt.CompareHashAndPassword([]byte(account.Password), []byte(password))
 	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
-		return u.Message(false, "Invalid Login Credential")
+		return u.Message(http.StatusForbidden, "Invalid Login Credential")
 	}
 
 	//password work, and delete password immediately
@@ -97,11 +98,11 @@ func Login(email, password string) map[string]interface{} {
 
 	//Create Jwt Token
 	tk := &Token{UserId: account.ID}
-	token := jwt.NewWithClaims(jwt.GetSigningMethod("HS356"), tk)
+	token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), tk)
 	tokenString, _ := token.SignedString([]byte(os.Getenv("token_password")))
 	account.Token = tokenString
 
-	resp := u.Message(true, "Logged In")
+	resp := u.Message(http.StatusOK, "Logged In")
 	resp["account"] = account
 	return resp
 }

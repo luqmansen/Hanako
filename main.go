@@ -9,14 +9,12 @@ import (
 	"os"
 )
 
-
 func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "docs/index.html")
 	})
-
 
 	api := r.PathPrefix("/api/v1").Subrouter()
 	//api.Use(app.JwtAuthentication)
@@ -45,4 +43,3 @@ func main() {
 	}
 
 }
-
