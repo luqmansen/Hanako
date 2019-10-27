@@ -1,4 +1,4 @@
-package models
+package models_postegres
 
 import (
 	"fmt"
@@ -31,7 +31,7 @@ func init() {
 	}
 
 	db = conn
-	db.Debug().AutoMigrate(&Account{}, &Anime{})
+	db.Debug().AutoMigrate(&Account{}, &Anime2{})
 }
 
 func getDB() *gorm.DB {

@@ -1,4 +1,4 @@
-package models
+package models_postegres
 
 import (
 	"github.com/dgrijalva/jwt-go"

@@ -17,6 +17,7 @@ func main() {
 	})
 
 	api := r.PathPrefix("/api/v1").Subrouter()
+	apiv2 := r.PathPrefix("/api/v2").Subrouter()
 	//api.Use(app.JwtAuthentication)
 
 	api.HandleFunc("/user/new", controllers.CreateAccount).Methods("POST")
@@ -24,12 +25,13 @@ func main() {
 
 	api.Path("/anime/all").Queries("show", "{show}").HandlerFunc(controllers.GetAll).Methods("GET")
 	api.Path("/anime/all").HandlerFunc(controllers.GetAll).Methods("GET")
-
-	api.HandleFunc("/anime/{id}", controllers.GetById).Methods("GET")
-
+	api.Path("/anime/{id}").HandlerFunc( controllers.GetById).Methods("GET")
 	api.Path("/anime/search/q").Queries("title", "{title}").HandlerFunc(controllers.GetByTitle).Methods("GET")
 
+	apiv2.Path("/anime/all").HandlerFunc(controllers.GetAllV2).Methods("GET")
+
 	utils.Walk(api)
+	//utils.Walk(apiv2)
 
 	port := os.Getenv("PORT")
 	if port == "" {
