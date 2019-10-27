@@ -1,14 +1,14 @@
 package models_mongo
 
 import (
+	"fmt"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"log"
 	"os"
 )
 
 type AnimeDAO struct {
-	Server string
+	Server   string
 	Database string
 	Password string
 	Username string
@@ -21,19 +21,16 @@ var dao = AnimeDAO{}
 const COLLECTION  = "anime"
 
 func init(){
-	dao.Server = os.Getenv("mongo_server")
-	dao.Database = os.Getenv("mongo_database")
-	dao.Username = os.Getenv("mongo_username")
-	dao.Password = os.Getenv("mongo_password")
 	dao.Connect()
 }
 
 func (a *AnimeDAO) Connect(){
-	session, err := mgo.Dial(a.Server)
+
+	session, err := mgo.Dial(os.Getenv("mongo_url"))
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
-	db = session.DB(a.Database)
+	db = session.DB(os.Getenv("mongo_dbname"))
 }
 
 func(a *AnimeDAO) FindAll() ([]Anime, error){
