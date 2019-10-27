@@ -23,3 +23,20 @@ var GetAllV2 = func(w http.ResponseWriter, r *http.Request){
 	}
 
 }
+
+var GetByTitleV2 = func(w http.ResponseWriter, r *http.Request){
+
+	keyword := r.URL.Query().Get("title")
+	data, err:= dao.FindByTitle(keyword)
+	if err != nil {
+		u.Message(http.StatusInternalServerError, err.Error())
+	}
+	if data == nil {
+		u.Respond(w, u.Message(http.StatusNoContent, "Not Found"))
+	} else {
+		resp := u.Message(http.StatusOK, "Success")
+		resp["data"] = data
+		u.Respond(w, resp)
+	}
+
+}

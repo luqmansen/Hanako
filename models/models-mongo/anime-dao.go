@@ -31,10 +31,40 @@ func (a *AnimeDAO) Connect(){
 		fmt.Println(err)
 	}
 	db = session.DB(os.Getenv("mongo_dbname"))
+
+	index := mgo.Index{
+		Key:              []string{"$text:title"},
+		Name:             "titleIndex",
+	}
+
+	err = db.C(COLLECTION).EnsureIndex(index)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	
+	
 }
 
 func(a *AnimeDAO) FindAll() ([]Anime, error){
-	var animes [] Anime
-	err := db.C(COLLECTION).Find(bson.M{}).Limit(20).All(&animes)
-	return animes,err
+	var results [] Anime
+	err := db.C(COLLECTION).Find(bson.M{}).Limit(20).All(&results)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return results,err
+}
+
+func (a *AnimeDAO) FindByTitle(title string) ([]Anime, error){
+	var results []Anime
+	query := bson.M{
+		"$text": bson.M{
+		"$search": title,
+		},
+	}
+	err := db.C(COLLECTION).Find(query).All(&results)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return results, err
 }

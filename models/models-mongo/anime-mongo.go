@@ -5,7 +5,7 @@ import "gopkg.in/mgo.v2/bson"
 type Anime struct {
 	Id bson.ObjectId `bson:"_id" json:"id"`
 	Sources []string `bson:"sources" json:"sources"`
-	Type string `bson:"type" json:"kind"`
+	Type string `bson:"type" json:"type"`
 	Title string `bson:"title" json:"title"`
 	Picture string `bson:"picture" json:"picture"`
 	Relations []string `bson:"relations" json:"relations"`
