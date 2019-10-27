@@ -4,24 +4,27 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
+	"os"
 )
 
 type AnimeDAO struct {
 	Server string
 	Database string
+	Password string
+	Username string
 }
 
 var db *mgo.Database
-var config = Config{}
 var dao = AnimeDAO{}
 
 
 const COLLECTION  = "anime"
 
 func init(){
-	config.Read()
-	dao.Server = config.Server
-	dao.Database = config.Database
+	dao.Server = os.Getenv("mongo_server")
+	dao.Database = os.Getenv("mongo_database")
+	dao.Username = os.Getenv("mongo_username")
+	dao.Password = os.Getenv("mongo_password")
 	dao.Connect()
 }
 
