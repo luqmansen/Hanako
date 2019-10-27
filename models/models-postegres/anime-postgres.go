@@ -55,10 +55,13 @@ func GetAll(number string) []*Anime2 {
 		number = "20"
 	}
 	animes := make([]*Anime2, 0)
-	err := getDB().Limit(number).Find(&animes).Error
+	err := getDB().Table("animes").Limit(number).Find(& animes).Error
 	if err != nil {
 		fmt.Println(err)
 		return nil
+	}
+	if len(animes) == 0{
+		fmt.Println("0 record found")
 	}
 	return animes
 }

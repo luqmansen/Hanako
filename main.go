@@ -25,7 +25,9 @@ func main() {
 
 	api.Path("/anime/all").Queries("show", "{show}").HandlerFunc(controllers.GetAll).Methods("GET")
 	api.Path("/anime/all").HandlerFunc(controllers.GetAll).Methods("GET")
-	api.Path("/anime/{id}").HandlerFunc( controllers.GetById).Methods("GET")
+
+	api.HandleFunc("/anime/{id}", controllers.GetById).Methods("GET")
+
 	api.Path("/anime/search/q").Queries("title", "{title}").HandlerFunc(controllers.GetByTitle).Methods("GET")
 
 	apiv2.Path("/anime/all").HandlerFunc(controllers.GetAllV2).Methods("GET")
