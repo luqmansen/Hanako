@@ -3,7 +3,7 @@ package models_mongo
 import "gopkg.in/mgo.v2/bson"
 
 type Anime struct {
-	Id bson.ObjectId `bson:"_id" json:"_id"`
+	Id bson.ObjectId `bson:"_id" json:"id"`
 	Sources []string `bson:"sources" json:"sources"`
 	Type string `bson:"type" json:"kind"`
 	Title string `bson:"title" json:"title"`
