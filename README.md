@@ -8,12 +8,12 @@ For now, this is a RESTful Webservice API for an anime database
 
 ## Demo
 (V1 use postgres)<br>
-https://hanako.luqmansen.me/api/v1/anime/all
-https://hanako.luqmansen.me/api/v1/anime/search/q?title=kimi
+- https://hanako.luqmansen.me/api/v1/anime/all
+- https://hanako.luqmansen.me/api/v1/anime/search/q?title=kimi
 
 (V2 use mongodb)<br>
-https://hanako.luqmansen.me/api/v2/anime/all
-https://hanako.luqmansen.me/api/v2/anime/search/q?title=kimi
+- https://hanako.luqmansen.me/api/v2/anime/all
+- https://hanako.luqmansen.me/api/v2/anime/search/q?title=kimi
 
 
 ## Prequisites
@@ -85,9 +85,6 @@ Other stuff still on development, fork this repo and help me :D
 
 - [Heroku](https://github.com/luqmansen/Hanako/wiki/Deployment)
  
-
-
-
 ## Roadmap and Progress 
 Read the roadmap on the wiki [here](https://github.com/luqmansen/Hanako/wiki/Roadmap)
 
