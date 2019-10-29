@@ -42,8 +42,6 @@ func (a *AnimeDAO) Connect(){
 		fmt.Println(err)
 	}
 
-	
-	
 }
 
 func(a *AnimeDAO) FindAll() ([]Anime, error){
@@ -55,13 +53,35 @@ func(a *AnimeDAO) FindAll() ([]Anime, error){
 	return results,err
 }
 
-func (a *AnimeDAO) FindByTitle(title string) ([]Anime, error){
+func (a *AnimeDAO) FindByQuery(queries map[string]interface{}) ([]Anime, error){
+
 	var results []Anime
-	query := bson.M{
-		"$text": bson.M{
-		"$search": title,
-		},
+	var query bson.M
+	if  queries["title"] != "" && queries["type"] != ""{
+		query = bson.M{
+			"$and": []interface{}{
+				bson.M{
+					"$text" :
+					bson.M{"$search" : queries["title"]},
+				},
+				bson.M{ "type" : queries["type"]},
+			},
+		}
+	} else if queries["title"] != ""{
+		query = bson.M{
+			"$text": bson.M{
+				"$search": queries["title"],
+			},
+		}
+	} else{
+		query = bson.M{
+			"type" : queries["type"],
+		}
 	}
+
+	fmt.Println(query)
+
+
 	err := db.C(COLLECTION).Find(query).All(&results)
 	if err != nil {
 		fmt.Println(err)

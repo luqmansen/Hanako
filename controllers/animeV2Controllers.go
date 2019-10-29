@@ -26,8 +26,14 @@ var GetAllV2 = func(w http.ResponseWriter, r *http.Request){
 
 var GetByTitleV2 = func(w http.ResponseWriter, r *http.Request){
 
-	keyword := r.URL.Query().Get("title")
-	data, err:= dao.FindByTitle(keyword)
+	v := r.URL.Query()
+
+	queryMap := map[string]interface{}{
+		"title" : v.Get("title"),
+		"type"	: v.Get("type"),
+	}
+
+	data, err:= dao.FindByQuery(queryMap)
 	if err != nil {
 		u.Message(http.StatusInternalServerError, err.Error())
 	}
