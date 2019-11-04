@@ -93,9 +93,10 @@ For now, just fork it and create a pull request, there will be a contribution gu
 
 ## Authors
 
-* **Luqmansen** - [luqmansen](https://github.com/luqmansen)
+<a href="https://github.com/luqmansen/Hanako/graphs/contributors">
+  <img src="https://contributors-img.firebaseapp.com/image?repo=luqmansen/Hanako" />
+</a>
 
-See also the list of [contributors](https://github.com/luqmansen/hanako/contributors) who participated in this project.
 
 ## License
 
