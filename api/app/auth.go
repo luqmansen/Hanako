@@ -32,7 +32,7 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 
 		// if token is missing, return 403
 		if tokenHeader == "" {
-			response = utils.Message(false, "Missing auth token")
+			response = utils.Message(http.StatusForbidden, "Missing auth token")
 			w.WriteHeader(http.StatusForbidden)
 			w.Header().Add("Content-Type", "application/json")
 			utils.Respond(w, response)
@@ -43,7 +43,7 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 		// we check if the retrieved token matched this requirement
 		splitted := strings.Split(tokenHeader, " ")
 		if len(splitted) != 2 {
-			response = utils.Message(false, "Invalid/Malformed Token")
+			response = utils.Message(http.StatusForbidden, "Invalid/Malformed Token")
 			w.WriteHeader(http.StatusForbidden)
 			w.Header().Add("Content-Type", "application/json")
 			utils.Respond(w, response)
@@ -60,7 +60,7 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 
 		//Marformed token, return 403
 		if err != nil {
-			response = utils.Message(false, "Invalid/Malformed Token")
+			response = utils.Message(http.StatusForbidden, "Invalid/Malformed Token")
 			w.WriteHeader(http.StatusForbidden)
 			w.Header().Add("Content-Type", "application/json")
 			utils.Respond(w, response)
@@ -68,7 +68,7 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 		}
 		//Token is invalid, maybe not signed on this server
 		if !token.Valid {
-			response = utils.Message(false, "Invalid Token")
+			response = utils.Message(http.StatusForbidden, "Invalid Token")
 			w.WriteHeader(http.StatusForbidden)
 			w.Header().Add("Content-Type", "application/json")
 			utils.Respond(w, response)
