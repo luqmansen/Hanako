@@ -1,9 +1,9 @@
-package models_postegres
+package postgres
 
 import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/jinzhu/gorm"
-	u "github.com/luqmansen/hanako/utils"
+	u "github.com/luqmansen/hanako/api/utils"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
 	"os"

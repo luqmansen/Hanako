@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/luqmansen/hanako/models/models-postegres"
-	u "github.com/luqmansen/hanako/utils"
+	"github.com/luqmansen/hanako/api/models/postgres"
+	u "github.com/luqmansen/hanako/api/utils"
 	"net/http"
 	"strconv"
 )
@@ -12,7 +12,7 @@ var GetAll = func(w http.ResponseWriter, r *http.Request) {
 
 	show := r.URL.Query().Get("show")
 
-	data := models_postegres.GetAll(show)
+	data := postgres.GetAll(show)
 	if data == nil {
 		u.Respond(w, u.Message(http.StatusNoContent, "Not Found"))
 	} else {
@@ -25,7 +25,7 @@ var GetAll = func(w http.ResponseWriter, r *http.Request) {
 var GetByTitle = func(w http.ResponseWriter, r *http.Request) {
 
 	keyword := r.URL.Query().Get("title")
-	data := models_postegres.GetByTitle(keyword)
+	data := postgres.GetByTitle(keyword)
 	if data == nil {
 		u.Respond(w, u.Message(http.StatusNoContent, "Not Found"))
 	} else {
@@ -41,7 +41,7 @@ var GetById = func(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(params["id"])
 	if err != nil {
 		u.Respond(w, u.Message(http.StatusBadRequest, "There was an error in your request"))
-	} else if data := models_postegres.GetByID(uint(id)); data == nil {
+	} else if data := postgres.GetByID(uint(id)); data == nil {
 		u.Respond(w, u.Message(http.StatusNoContent, "Not Found"))
 	} else {
 

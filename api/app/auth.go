@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
-	"github.com/luqmansen/hanako/models/models-postegres"
-	"github.com/luqmansen/hanako/utils"
+	"github.com/luqmansen/hanako/api/models/postgres"
+	"github.com/luqmansen/hanako/api/utils"
 	"net/http"
 	"os"
 	"strings"
@@ -52,7 +52,7 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 		}
 
 		tokenPart := splitted[1]
-		tk := &models_postegres.Token{}
+		tk := &postgres.Token{}
 
 		token, err := jwt.ParseWithClaims(tokenPart, tk, func(token *jwt.Token) (interface{}, error) {
 			return []byte(os.Getenv("token_password")), nil

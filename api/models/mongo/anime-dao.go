@@ -1,7 +1,8 @@
-package models_mongo
+package mongo
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"os"
@@ -16,71 +17,76 @@ type AnimeDAO struct {
 
 var db *mgo.Database
 var dao = AnimeDAO{}
+const COLLECTION = "anime"
 
+func init() {
+	e := godotenv.Load()
+	if e != nil {
+		panic(e)
+	}
 
-const COLLECTION  = "anime"
-
-func init(){
 	dao.Connect()
 }
 
-func (a *AnimeDAO) Connect(){
+func (a *AnimeDAO) Connect() {
 
 	session, err := mgo.Dial(os.Getenv("mongo_url"))
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 	db = session.DB(os.Getenv("mongo_dbname"))
+	fmt.Println(db)
 
 	index := mgo.Index{
-		Key:              []string{"$text:title"},
-		Name:             "titleIndex",
+		Key:  []string{"$text:title"},
+		Name: "titleIndex",
 	}
 
 	err = db.C(COLLECTION).EnsureIndex(index)
 	if err != nil {
-		fmt.Println(err)
+		//panic(err)
 	}
 
 }
 
-func(a *AnimeDAO) FindAll() ([]Anime, error){
-	var results [] Anime
+func (a *AnimeDAO) FindAll() ([]Anime, error) {
+	var results []Anime
 	err := db.C(COLLECTION).Find(bson.M{}).Limit(20).All(&results)
 	if err != nil {
 		fmt.Println(err)
 	}
-	return results,err
+	if results == nil{
+		return []Anime{}, nil
+	}
+	return results, err
 }
 
-func (a *AnimeDAO) FindByQuery(queries map[string]interface{}) ([]Anime, error){
+func (a *AnimeDAO) FindByQuery(queries map[string]interface{}) ([]Anime, error) {
 
 	var results []Anime
 	var query bson.M
-	if  queries["title"] != "" && queries["type"] != ""{
+	if queries["title"] != "" && queries["type"] != "" {
 		query = bson.M{
 			"$and": []interface{}{
 				bson.M{
-					"$text" :
-					bson.M{"$search" : queries["title"]},
+					"$text": bson.M{"$search": queries["title"]},
 				},
-				bson.M{ "type" : queries["type"]},
+				bson.M{"type": queries["type"]},
 			},
 		}
-	} else if queries["title"] != ""{
+	} else if queries["title"] != "" {
 		query = bson.M{
 			"$text": bson.M{
 				"$search": queries["title"],
 			},
 		}
-	} else{
+	} else {
 		query = bson.M{
-			"type" : queries["type"],
+			"type": queries["type"],
 		}
 	}
 
 	fmt.Println(query)
-
 
 	err := db.C(COLLECTION).Find(query).All(&results)
 	if err != nil {

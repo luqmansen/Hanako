@@ -2,14 +2,14 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/luqmansen/hanako/models/models-postegres"
-	u "github.com/luqmansen/hanako/utils"
+	"github.com/luqmansen/hanako/api/models/postgres"
+	u "github.com/luqmansen/hanako/api/utils"
 	"net/http"
 )
 
 var CreateAccount = func(w http.ResponseWriter, r *http.Request) {
 
-	account := &models_postegres.Account{}
+	account := &postgres.Account{}
 	err := json.NewDecoder(r.Body).Decode(account)
 	if err != nil {
 		u.Respond(w, u.Message(http.StatusBadRequest, "Invalid Request"))
@@ -21,12 +21,12 @@ var CreateAccount = func(w http.ResponseWriter, r *http.Request) {
 
 var Authenticate = func(w http.ResponseWriter, r *http.Request) {
 
-	account := &models_postegres.Account{}
+	account := &postgres.Account{}
 	err := json.NewDecoder(r.Body).Decode(account)
 	if err != nil {
 		u.Respond(w, u.Message(http.StatusBadRequest, "Invalid Request"))
 		return
 	}
-	resp := models_postegres.Login(account.Email, account.Password)
+	resp := postgres.Login(account.Email, account.Password)
 	u.Respond(w, resp)
 }
