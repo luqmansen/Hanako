@@ -2,12 +2,12 @@ package controllers
 
 import (
 	"fmt"
-	models_mongo "github.com/luqmansen/hanako/api/models/mongo"
+	modelsmongo "github.com/luqmansen/hanako/api/models/mongo"
 	"github.com/luqmansen/hanako/api/responses"
 	"net/http"
 )
 
-var dao = models_mongo.AnimeDAO{}
+var dao = modelsmongo.AnimeDAO{}
 
 var GetAllV2 = func(w http.ResponseWriter, r *http.Request) {
 
@@ -19,7 +19,6 @@ var GetAllV2 = func(w http.ResponseWriter, r *http.Request) {
 	resp := make(map[string]interface{})
 	resp["data"] = data
 	responses.JSON(w, http.StatusOK, resp)
-
 
 }
 

@@ -55,7 +55,7 @@ func (a *AnimeDAO) FindAll() ([]Anime, error) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	if results == nil{
+	if results == nil {
 		return []Anime{}, nil
 	}
 	return results, err
