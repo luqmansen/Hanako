@@ -15,6 +15,7 @@ func init() {
 		panic(err)
 	}
 }
+
 func Run() {
 
 	dbUsername := os.Getenv("db_user")

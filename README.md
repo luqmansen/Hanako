@@ -1,4 +1,4 @@
-# Project Hanako
+# Project Hanako [![Build Status](https://travis-ci.com/luqmansen/Hanako.svg?branch=master)](https://travis-ci.com/luqmansen/Hanako)
 
 ![](docs/assets/hanako-small.png)
 

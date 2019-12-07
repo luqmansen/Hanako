@@ -5,6 +5,7 @@ import (
 	"github.com/joho/godotenv"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"log"
 	"os"
 )
 
@@ -44,7 +45,7 @@ func (a *AnimeDAO) Connect() {
 
 	err = db.C(COLLECTION).EnsureIndex(index)
 	if err != nil {
-		//panic(err)
+		log.Fatal(err)
 	}
 
 }

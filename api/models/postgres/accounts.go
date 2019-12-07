@@ -19,7 +19,7 @@ type Account struct {
 	gorm.Model
 	Email    string `json:"email"`
 	Password string `json:"password"`
-	Token    string `json:"token";sql:"-"`
+	Token    string `json:"token"`
 }
 
 func (account *Account) Validate() (map[string]interface{}, bool) {
@@ -59,7 +59,7 @@ func (account *Account) Create() map[string]interface{} {
 
 	getDB().Create(account)
 
-	if account.ID <= 0 {
+	if account.ID == 0 {
 		return u.Message(http.StatusInternalServerError, "Failed To Create Account, connection Error.")
 	}
 

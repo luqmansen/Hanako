@@ -27,7 +27,7 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 			}
 		}
 
-		response := make(map[string]interface{})
+		var response map[string]interface{}
 		tokenHeader := r.Header.Get("Authorization") //Grab token from header
 
 		// if token is missing, return 403
@@ -77,7 +77,7 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 
 		//Everything good, proceed the request and set the caller to the user retrieved
 		//form the parsed token
-		fmt.Sprintf("User %", tk.UserId)
+		_ = fmt.Sprintf("%i", tk.UserId)
 		ctx := context.WithValue(r.Context(), "user", tk.UserId)
 		r = r.WithContext(ctx)
 		next.ServeHTTP(w, r)
