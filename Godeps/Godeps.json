@@ -1,6 +1,6 @@
 {
-	"ImportPath": "github.com/luqmansen/hanako",
-	"GoVersion": "go1.12",
+	"ImportPath": "github.com/hanako-project/Hanako",
+	"GoVersion": "go1.13",
 	"GodepVersion": "v80",
 	"Deps": [
 		{
