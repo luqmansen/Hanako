@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package search;
+
+service Search {
+    rpc SearchBy(Request) returns (Anime);
+    rpc GetAll(Nothing) returns (Results);
+}
+
+message Nothing {}
+
+message Request {
+    int32 animeId = 1;
+    string title = 2;
+    string type = 3;
+    string status = 4;
+}
+
+message Results {
+    repeated Anime animes = 1;
+}
+
+message Anime {
+    repeated string sources = 1;
+    string title = 2;
+    string type = 3;
+    int32 episodes = 4;
+    string status = 5;
+    string picture = 6;
+    string thumbnail = 7;
+    repeated string synonyms = 8;
+    repeated string relations = 9;
+}

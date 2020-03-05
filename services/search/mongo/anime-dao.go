@@ -3,7 +3,6 @@ package mongo
 import (
 	"fmt"
 	"github.com/joho/godotenv"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
 	"os"

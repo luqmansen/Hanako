@@ -1,8 +1,9 @@
-package postgres
+package user
 
 import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/jinzhu/gorm"
+	"github.com/luqmansen/Hanako/api/models/postgres"
 	u "github.com/luqmansen/hanako/api/utils"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
@@ -35,7 +36,7 @@ func (account *Account) Validate() (map[string]interface{}, bool) {
 	temp := &Account{}
 
 	//	Check for duplicate email
-	err := getDB().Table("accounts").Where("email = ?", account.Email).First(temp).Error
+	err := postgres.getDB().Table("accounts").Where("email = ?", account.Email).First(temp).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return u.Message(http.StatusInternalServerError, "Connection error, Please Retry"), false
 	}
@@ -57,7 +58,7 @@ func (account *Account) Create() map[string]interface{} {
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(account.Password), bcrypt.DefaultCost)
 	account.Password = string(hashedPassword)
 
-	getDB().Create(account)
+	postgres.getDB().Create(account)
 
 	if account.ID == 0 {
 		return u.Message(http.StatusInternalServerError, "Failed To Create Account, connection Error.")
@@ -80,7 +81,7 @@ func (account *Account) Create() map[string]interface{} {
 func Login(email, password string) map[string]interface{} {
 
 	account := &Account{}
-	err := getDB().Table("accounts").Where("email = ?", email).First(account).Error
+	err := postgres.getDB().Table("accounts").Where("email = ?", email).First(account).Error
 	if err != nil {
 		if err == gorm.ErrRecordNotFound {
 			return u.Message(http.StatusNotFound, "Email Address Not Found")
@@ -110,7 +111,7 @@ func Login(email, password string) map[string]interface{} {
 func GetUser(u uint) *Account {
 
 	acc := &Account{}
-	getDB().Table("account").Where("id = ?", u).First(acc)
+	postgres.getDB().Table("account").Where("id = ?", u).First(acc)
 	if acc.Email == "" {
 		return nil
 	}

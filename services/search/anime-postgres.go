@@ -1,8 +1,9 @@
-package postgres
+package search
 
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
+	"github.com/luqmansen/Hanako/services/user"
 	u "github.com/luqmansen/hanako/api/utils"
 	"net/http"
 	"strconv"
@@ -40,7 +41,7 @@ func (anime *Anime2) AddEntry() map[string]interface{} {
 		return resp
 	}
 
-	getDB().Create(anime)
+	user.getDB().Create(anime)
 
 	resp := u.Message(http.StatusOK, "success")
 	resp["anime"] = anime
@@ -55,7 +56,7 @@ func GetAll(number string) []*Anime2 {
 		number = "20"
 	}
 	animes := make([]*Anime2, 0)
-	err := getDB().Table("anime2").Limit(number).Find(&animes).Error
+	err := user.getDB().Table("anime2").Limit(number).Find(&animes).Error
 	if err != nil {
 		fmt.Println(err)
 		return nil
@@ -69,7 +70,7 @@ func GetAll(number string) []*Anime2 {
 func GetByTitle(title string) []*Anime2 {
 
 	animes := make([]*Anime2, 0)
-	err := getDB().Table("animes").Where("name ILIKE '%' || ? || '%'", title).Find(&animes).Error
+	err := user.getDB().Table("animes").Where("name ILIKE '%' || ? || '%'", title).Find(&animes).Error
 	if err != nil {
 		fmt.Println(err)
 		return nil
@@ -80,7 +81,7 @@ func GetByTitle(title string) []*Anime2 {
 func GetByID(ID uint) *Anime2 {
 
 	animes := &Anime2{}
-	err := getDB().Table("animes").Where("ID = ?", ID).Find(&animes).Error
+	err := user.getDB().Table("animes").Where("ID = ?", ID).Find(&animes).Error
 	if err != nil {
 		fmt.Println(err)
 		return nil
