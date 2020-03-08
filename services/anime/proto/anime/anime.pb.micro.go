@@ -35,7 +35,7 @@ var _ server.Option
 
 type AnimeService interface {
 	GetAnimes(ctx context.Context, in *Request, opts ...client.CallOption) (*Results, error)
-	GetAll(ctx context.Context, in *NoParam, opts ...client.CallOption) (*Results, error)
+	GetAll(ctx context.Context, in *Request, opts ...client.CallOption) (*Results, error)
 }
 
 type animeService struct {
@@ -60,7 +60,7 @@ func (c *animeService) GetAnimes(ctx context.Context, in *Request, opts ...clien
 	return out, nil
 }
 
-func (c *animeService) GetAll(ctx context.Context, in *NoParam, opts ...client.CallOption) (*Results, error) {
+func (c *animeService) GetAll(ctx context.Context, in *Request, opts ...client.CallOption) (*Results, error) {
 	req := c.c.NewRequest(c.name, "AnimeService.GetAll", in)
 	out := new(Results)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -74,13 +74,13 @@ func (c *animeService) GetAll(ctx context.Context, in *NoParam, opts ...client.C
 
 type AnimeServiceHandler interface {
 	GetAnimes(context.Context, *Request, *Results) error
-	GetAll(context.Context, *NoParam, *Results) error
+	GetAll(context.Context, *Request, *Results) error
 }
 
 func RegisterAnimeServiceHandler(s server.Server, hdlr AnimeServiceHandler, opts ...server.HandlerOption) error {
 	type animeService interface {
 		GetAnimes(ctx context.Context, in *Request, out *Results) error
-		GetAll(ctx context.Context, in *NoParam, out *Results) error
+		GetAll(ctx context.Context, in *Request, out *Results) error
 	}
 	type AnimeService struct {
 		animeService
@@ -97,6 +97,6 @@ func (h *animeServiceHandler) GetAnimes(ctx context.Context, in *Request, out *R
 	return h.AnimeServiceHandler.GetAnimes(ctx, in, out)
 }
 
-func (h *animeServiceHandler) GetAll(ctx context.Context, in *NoParam, out *Results) error {
+func (h *animeServiceHandler) GetAll(ctx context.Context, in *Request, out *Results) error {
 	return h.AnimeServiceHandler.GetAll(ctx, in, out)
 }

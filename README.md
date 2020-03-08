@@ -15,13 +15,26 @@ Other stuff still on development, fork this repo and help me :D
 - [protoc-gen-micro](https://github.com/micro/protoc-gen-micro)
 
 ## Development
+#####Run testing
+ via micro command line
+````cgo
+micro call hanako.<type(default=srv)>.<service_name> <ServiceName>.<Method_name> '{"json_param" : "value"}'
+
+````
+Or via micro web (Recommended) 
+```cgo
+micro web
+```
+Then call service via client page
+
+##### Others
 Please read readme on each service for specific instruction
 
 ## Deployment
 
 - [Heroku](https://github.com/luqmansen/Hanako/wiki/Deployment) (Deprecated)
  
-## Roadmap and Progress 
+## Roadmap
 Read the roadmap on the wiki [here](https://github.com/luqmansen/Hanako/wiki/Roadmap)
 
 ## Contributing

@@ -4,9 +4,14 @@ package hanako.srv.anime;
 
 service AnimeService {
 	rpc GetAnimes(Request) returns (Results) {}
-	rpc GetAll(NoParam) returns (Results) {}
+	rpc GetAll(Request) returns (Results) {}
 }
-message NoParam {}
+
+message Request {
+	string animeId = 1;
+	string title = 2;
+	string type = 3;
+}
 
 message Anime {
 	string Id = 1;
@@ -19,10 +24,6 @@ message Anime {
 	string thumbnail = 8;
 	repeated string synonyms = 9;
 	repeated string relations = 10;
-}
-
-message Request {
-	repeated string animeId = 1;
 }
 
 message Results {

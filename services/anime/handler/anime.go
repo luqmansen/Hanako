@@ -15,7 +15,7 @@ type Anime struct {
 
 var dao = models.AnimeDAO{}
 
-func (a *Anime) GetAll(ctx context.Context, req *anime.NoParam, resp *anime.Results) error {
+func (a *Anime) GetAll(ctx context.Context, req *anime.Request, resp *anime.Results) error {
 	md, _ := metadata.FromContext(ctx)
 	traceID := md["traceID"]
 	if tr, ok := trace.FromContext(ctx); ok {
@@ -30,6 +30,20 @@ func (a *Anime) GetAll(ctx context.Context, req *anime.NoParam, resp *anime.Resu
 }
 
 func (a *Anime) GetAnimes(ctx context.Context, req *anime.Request, resp *anime.Results) error {
+	md, _ := metadata.FromContext(ctx)
+	traceID := md["traceID"]
+	if tr, ok := trace.FromContext(ctx); ok {
+		tr.LazyPrintf("traceID %s", traceID)
+	}
+	query := map[string]interface{}{
+		"title": req.GetTitle(),
+		"type":  req.GetType(),
+	}
 
+	data, err := dao.FindByQuery(query)
+	if err != nil {
+		return errors.New("error when retrieving data " + err.Error())
+	}
+	resp.Animes = data
 	return nil
 }
