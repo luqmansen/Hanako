@@ -8,6 +8,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	"log"
 	"os"
+	"unicode"
 )
 
 type AnimeDAO struct {
@@ -57,42 +58,52 @@ func (a *AnimeDAO) FindAll() ([]*anime.Anime, error) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	//if results == nil {
-	//	return []*anime.Anime{}, nil
-	//}
 	return results, err
 }
 
-//func (a *AnimeDAO) FindByQuery(queries map[string]interface{}) ([]search.Anime, error) {
-//
-//	var results []search.Anime
-//	var query bson.M
-//	if queries["title"] != "" && queries["type"] != "" {
-//		query = bson.M{
-//			"$and": []interface{}{
-//				bson.M{
-//					"$text": bson.M{"$anime": queries["title"]},
-//				},
-//				bson.M{"type": queries["type"]},
-//			},
-//		}
-//	} else if queries["title"] != "" {
-//		query = bson.M{
-//			"$text": bson.M{
-//				"$anime": queries["title"],
-//			},
-//		}
-//	} else {
-//		query = bson.M{
-//			"type": queries["type"],
-//		}
-//	}
-//
-//	fmt.Println(query)
-//
-//	err := db.C(COLLECTION).Find(query).All(&results)
-//	if err != nil {
-//		fmt.Println(err)
-//	}
-//	return results, err
-//}
+func (a *AnimeDAO) FindByQuery(request map[string]interface{}) ([]*anime.Anime, error) {
+
+	var results []*anime.Anime
+
+	query := queryFormater(request)
+
+	err := db.C(COLLECTION).Find(query).All(&results)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return results, err
+}
+
+func queryFormater(request map[string]interface{}) bson.M {
+	var query bson.M
+
+	if request["title"] != "" && request["type"] != "" {
+		query = bson.M{
+			"$and": []interface{}{
+				bson.M{
+					"$text": bson.M{"$search": request["title"]},
+				},
+				bson.M{"type": request["type"]},
+			},
+		}
+	} else if request["title"] != "" {
+		// Format string if it is contain more than one word to be queried as title
+		s := fmt.Sprintf("%v", request["title"])
+		for _, v := range s {
+			if unicode.IsSpace(v) {
+				s = "\"" + s + "\""
+				break
+			}
+		}
+		query = bson.M{
+			"$text": bson.M{
+				"$search": s,
+			},
+		}
+	} else {
+		query = bson.M{
+			"type": request["type"],
+		}
+	}
+	return query
+}
