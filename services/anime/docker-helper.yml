@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  mongodb_container:
+    container_name: "hanako-mongodb"
+    image: mongo:latest
+    command: [--auth]
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    ports:
+      - 27017:27017
+    volumes:
+      - '/media/binsus/data215/mongodb:/data/db'
+
+volumes:
+  mongodb_data_container:
+
