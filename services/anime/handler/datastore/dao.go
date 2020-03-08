@@ -3,9 +3,11 @@ package datastore
 import (
 	anime "anime/proto/anime"
 	"fmt"
+	"github.com/joho/godotenv"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
+	"os"
 )
 
 type AnimeDAO struct {
@@ -21,22 +23,21 @@ var dao = AnimeDAO{}
 const COLLECTION = "anime"
 
 func init() {
-	//e := godotenv.Load()
-	//if e != nil {
-	//	panic(e)
-	//}
+	e := godotenv.Load()
+	if e != nil {
+		panic(e)
+	}
 
 	dao.Connect()
 }
 
 func (a *AnimeDAO) Connect() {
 
-	session, err := mgo.Dial("mongodb://root:root@localhost:27017/hanako")
+	session, err := mgo.Dial(os.Getenv("mongo_url"))
 	if err != nil {
 		panic(err)
 	}
-	log.Println("Connected to mongodb")
-	db = session.DB("hanako")
+	db = session.DB(os.Getenv("mongo_dbname"))
 
 	index := mgo.Index{
 		Key:  []string{"$text:title"},
