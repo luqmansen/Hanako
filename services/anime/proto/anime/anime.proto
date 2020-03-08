@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package hanako.srv.anime;
+
+service AnimeService {
+	rpc GetAnimes(Request) returns (Results) {}
+	rpc GetAll(NoParam) returns (Results) {}
+}
+message NoParam {}
+
+message Anime {
+	string Id = 1;
+	repeated string sources = 2;
+	string title = 3;
+	string type = 4;
+	int32 episodes = 5;
+	string status = 6;
+	string picture = 7;
+	string thumbnail = 8;
+	repeated string synonyms = 9;
+	repeated string relations = 10;
+}
+
+message Request {
+	repeated string animeId = 1;
+}
+
+message Results {
+	repeated Anime animes = 1;
+}
