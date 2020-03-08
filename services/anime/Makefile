@@ -1,6 +1,11 @@
 
 GOPATH:=$(shell go env GOPATH)
 
+du: #short for docker up
+	docker-compose -f docker-helper.yml up -d
+
+dd: #short for docker down
+	docker-compose -f docker-helper.yml down
 
 .PHONY: proto
 proto:
