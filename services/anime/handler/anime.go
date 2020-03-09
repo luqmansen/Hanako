@@ -5,7 +5,7 @@ import (
 	anime "anime/proto/anime"
 	"context"
 	"errors"
-	"github.com/micro/go-micro/metadata"
+	"github.com/micro/go-micro/v2/metadata"
 	"golang.org/x/net/trace"
 )
 
