@@ -1,8 +1,8 @@
 package main
 
 import (
-	"anime/handler"
-	anime "anime/proto/anime"
+	"github.com/luqmansen/hanako/services/anime/handler"
+	proto "github.com/luqmansen/hanako/services/anime/proto"
 	"github.com/micro/go-micro/v2"
 	"github.com/micro/go-micro/v2/util/log"
 )
@@ -14,7 +14,7 @@ func main() {
 
 	service.Init()
 
-	err := anime.RegisterAnimeServiceHandler(service.Server(), new(handler.Anime))
+	err := proto.RegisterAnimeServiceHandler(service.Server(), new(handler.Anime))
 	if err != nil {
 		log.Error(err)
 	}

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package hanako.srv.anime;
+package anime;
 
 service AnimeService {
 	rpc GetAnimes(Request) returns (Results) {}
