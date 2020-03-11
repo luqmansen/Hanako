@@ -1,9 +1,9 @@
 package datastore
 
 import (
-	anime "anime/proto/anime"
 	"fmt"
 	"github.com/joho/godotenv"
+	proto "github.com/luqmansen/hanako/services/anime/proto"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
@@ -52,8 +52,8 @@ func (a *AnimeDAO) Connect() {
 
 }
 
-func (a *AnimeDAO) FindAll() ([]*anime.Anime, error) {
-	var results []*anime.Anime
+func (a *AnimeDAO) FindAll() ([]*proto.Anime, error) {
+	var results []*proto.Anime
 	err := db.C(COLLECTION).Find(bson.M{}).Limit(20).All(&results)
 	if err != nil {
 		fmt.Println(err)
@@ -61,9 +61,9 @@ func (a *AnimeDAO) FindAll() ([]*anime.Anime, error) {
 	return results, err
 }
 
-func (a *AnimeDAO) FindByQuery(request map[string]interface{}) ([]*anime.Anime, error) {
+func (a *AnimeDAO) FindByQuery(request map[string]interface{}) ([]*proto.Anime, error) {
 
-	var results []*anime.Anime
+	var results []*proto.Anime
 
 	query := queryFormater(request)
 

@@ -1,21 +1,21 @@
 package handler
 
 import (
-	models "anime/handler/datastore"
-	anime "anime/proto/anime"
 	"context"
 	"errors"
+	models "github.com/luqmansen/hanako/services/anime/handler/datastore"
+	proto "github.com/luqmansen/hanako/services/anime/proto"
 	"github.com/micro/go-micro/v2/metadata"
 	"golang.org/x/net/trace"
 )
 
 type Anime struct {
-	AnimeList []*anime.Anime
+	AnimeList []*proto.Anime
 }
 
 var dao = models.AnimeDAO{}
 
-func (a *Anime) GetAll(ctx context.Context, req *anime.Request, resp *anime.Results) error {
+func (a *Anime) GetAll(ctx context.Context, req *proto.Request, resp *proto.Results) error {
 	md, _ := metadata.FromContext(ctx)
 	traceID := md["traceID"]
 	if tr, ok := trace.FromContext(ctx); ok {
@@ -29,7 +29,7 @@ func (a *Anime) GetAll(ctx context.Context, req *anime.Request, resp *anime.Resu
 	return nil
 }
 
-func (a *Anime) GetAnimes(ctx context.Context, req *anime.Request, resp *anime.Results) error {
+func (a *Anime) GetAnimes(ctx context.Context, req *proto.Request, resp *proto.Results) error {
 	md, _ := metadata.FromContext(ctx)
 	traceID := md["traceID"]
 	if tr, ok := trace.FromContext(ctx); ok {
