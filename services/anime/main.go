@@ -23,15 +23,15 @@ func main() {
 	)
 
 	session, err := datastore.CreateSession()
-	defer session.Close()
 	if err != nil {
 		logrus.Errorf("Error connecting to datastore: %v", err.Error())
 	}
+	defer session.Close()
 	logrus.Infof("Successfully connected to database: %s", os.Getenv("mongo_dbname"))
 
 	srv.Init()
 
-	err = proto.RegisterAnimeServiceHandler(srv.Server(), &handler.AnimeService{session})
+	err = proto.RegisterAnimeServiceHandler(srv.Server(), &handler.AnimeService{Session: session})
 	if err != nil {
 		logrus.Errorf("Error registering handler: %s", err.Error())
 	}

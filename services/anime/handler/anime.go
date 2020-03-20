@@ -10,14 +10,17 @@ import (
 	"gopkg.in/mgo.v2"
 )
 
+//AnimeService is type for containing the session
 type AnimeService struct {
 	Session *mgo.Session
 }
 
+//GetRepo return a session from anime repository connection
 func (s *AnimeService) GetRepo() datastore.Repository {
 	return &datastore.AnimeRepository{Session: s.Session.Clone()}
 }
 
+//GetAll is implementation of rpc AnimeService Interface
 func (s *AnimeService) GetAll(ctx context.Context, req *proto.Request, resp *proto.Results) error {
 	md, _ := metadata.FromContext(ctx)
 	traceID := md["traceID"]
@@ -36,6 +39,7 @@ func (s *AnimeService) GetAll(ctx context.Context, req *proto.Request, resp *pro
 	return nil
 }
 
+//GetAnimes is also implementation of rpc AnimeService Interface
 func (s *AnimeService) GetAnimes(ctx context.Context, req *proto.Request, resp *proto.Results) error {
 	md, _ := metadata.FromContext(ctx)
 	traceID := md["traceID"]
