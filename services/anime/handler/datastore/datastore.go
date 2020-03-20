@@ -19,7 +19,7 @@ func init() {
 	if err != nil {
 		logrus.Panicf("Can't authenticate to database %s", err.Error())
 	}
-	err = session.DB(DbName).C(CollectionName).EnsureIndex(index)
+	err = session.DB(os.Getenv("mongo_dbname")).C(CollectionName).EnsureIndex(index)
 	if err != nil {
 		logrus.Panicf("Can't perform operation %s", err.Error())
 	}

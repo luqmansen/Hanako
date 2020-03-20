@@ -12,8 +12,6 @@ const (
 	CollectionName = "anime"
 )
 
-var DbName = os.Getenv("mongo_dbname")
-
 type AnimeRepository struct {
 	Session *mgo.Session
 }
@@ -26,7 +24,7 @@ type Repository interface {
 }
 
 func (repo *AnimeRepository) collection() *mgo.Collection {
-	return repo.Session.DB(DbName).C(CollectionName)
+	return repo.Session.DB(os.Getenv("mongo_dbname")).C(CollectionName)
 }
 
 //Create new Anime
