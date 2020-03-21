@@ -51,14 +51,14 @@ After you run the mongodb container
     > use hanako
     ```
 4. Create new credential for your database
-    ```cgo
-    > user = {
-    ... user : "root",
-    ... pwd : "root",
-    ... roles :["readWrite"]
-    ... }
-    
-   > db.createUser(user)
+    ```cgo    
+   > db.createUser(
+       {
+         user : "root",
+         pwd : "root",
+         roles: [ { role: 'root', db: 'admin' } ]
+       }
+    )
     ```     
 5. Now exit, and to this on the terminal (with your json-array-formatted file)
     ```cgo
@@ -71,6 +71,8 @@ After you run the mongodb container
 ```dotenv
 mongo_url=mongodb_url
 mongo_dbname=mongo_db_database_name
+mongo_username=root
+mongo_pwd=root
 ```
 
 ## Dependencies

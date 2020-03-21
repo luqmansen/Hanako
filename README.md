@@ -1,18 +1,29 @@
-# Project Hanako [![Build Status](https://travis-ci.com/luqmansen/Hanako.svg?branch=master)](https://travis-ci.com/luqmansen/Hanako)
+# Project Hanako
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/luqmansen/hanako/blob/master/docs/LICENSE.md)
+[![Build Status](https://travis-ci.com/luqmansen/Hanako.svg?branch=master)](https://travis-ci.com/luqmansen/Hanako)
+[![Lint Status](https://github.com/luqmansen/Hanako/workflows/Go/badge.svg)](https://github.com/luqmansen/Hanako/actions)
 
-![](docs/assets/hanako-small.png)
 
+<p align="center">
+    <img src="https://github.com/luqmansen/Hanako/raw/master/docs/assets/hanako-super-small.png"/>
+</p>
 
 ## What is This ?
 This is an anime database services based on [go-micro](https://github.com/micro/go-micro) framework  
 
 ## What's working now
-- Anime service on progress, some of endpoint working now
+- Anime service and Rest API is working now 
 
-Other stuff still on development, fork this repo and help me :D
+Other stuff still on development, fork this repo and help me 	（‐＾▽＾‐）
+
+## Todo
+- Implement opentracing for service
 
 ## Prerequisites
+- [micro v2](https://github.com/micro/micro) 
 - [protoc-gen-micro](https://github.com/micro/protoc-gen-micro)
+
+Please follow specific instructions in each services for more info
 
 ## Development
 ##### Run testing
