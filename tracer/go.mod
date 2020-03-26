@@ -1,4 +1,4 @@
-module github.com/luqmansen/Hanako/tracer
+module github.com/luqmansen/hanako/tracer
 
 go 1.14
 
