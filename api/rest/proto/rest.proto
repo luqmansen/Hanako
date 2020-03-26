@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+import "github.com/micro/micro/api/proto/api.proto";
+
+service Rest {
+    rpc Search (go.micro.api.Request) returns(go.micro.api.Response) {}
+}
+
