@@ -6,6 +6,7 @@ import (
 	"github.com/luqmansen/hanako/services/anime/handler/datastore"
 	proto "github.com/luqmansen/hanako/services/anime/proto"
 	"github.com/micro/go-micro/v2/metadata"
+	"github.com/opentracing/opentracing-go"
 	"golang.org/x/net/trace"
 	"gopkg.in/mgo.v2"
 )
@@ -27,6 +28,13 @@ func (s *AnimeService) GetAll(ctx context.Context, req *proto.Request, resp *pro
 	if tr, ok := trace.FromContext(ctx); ok {
 		tr.LazyPrintf("traceID %s", traceID)
 	}
+	wireContext, _ := opentracing.GlobalTracer().Extract(opentracing.TextMap, opentracing.TextMapCarrier(md))
+	sp := opentracing.StartSpan("anime-srv", opentracing.ChildOf(wireContext))
+	sp.SetTag("req", req)
+	defer func() {
+		sp.SetTag("res", resp)
+		sp.Finish()
+	}()
 
 	repo := s.GetRepo()
 	defer repo.Close()

@@ -5,9 +5,15 @@ import (
 	"github.com/luqmansen/hanako/services/anime/handler"
 	"github.com/luqmansen/hanako/services/anime/handler/datastore"
 	proto "github.com/luqmansen/hanako/services/anime/proto"
+	"github.com/luqmansen/hanako/tracer"
 	"github.com/micro/go-micro/v2"
+	"github.com/opentracing/opentracing-go"
 	"github.com/sirupsen/logrus"
 	"os"
+)
+
+var (
+	servicename = "hanako.srv.anime"
 )
 
 func init() {
@@ -18,8 +24,16 @@ func init() {
 }
 
 func main() {
+	t, io, err := tracer.NewTracer(servicename, "localhost:6381")
+	if err != nil {
+		logrus.Fatal(err)
+	}
+	defer io.Close()
+
+	opentracing.SetGlobalTracer(t)
+
 	srv := micro.NewService(
-		micro.Name("hanako.srv.anime"),
+		micro.Name(servicename),
 	)
 
 	session, err := datastore.CreateSession()
