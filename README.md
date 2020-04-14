@@ -2,10 +2,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/luqmansen/hanako/blob/master/docs/LICENSE.md)
 [![Build Status](https://travis-ci.com/luqmansen/Hanako.svg?branch=master)](https://travis-ci.com/luqmansen/Hanako)
 [![Lint Status](https://github.com/luqmansen/Hanako/workflows/Go/badge.svg)](https://github.com/luqmansen/Hanako/actions)
-[![Commit activity](https://img.shields.io/github/commit-activity/w/luqmansen/hanako?foo=bar)](https://github.com/luqmansen/Hanako/pulse)
 [![last commit](https://img.shields.io/github/last-commit/luqmansen/hanako)](https://github.com/luqmansen/Hanako/graphs/commit-activity)
 [![HitCount](http://hits.dwyl.com/luqmansen/Hanako.svg)](http://hits.dwyl.com/luqmansen/Hanako)
-[![Twitter](https://img.shields.io/twitter/follow/luqmansen_?label=Follow&style=social)](https://twitter.com/luqmansen_)
+[![Twitter Follow](https://img.shields.io/twitter/follow/luqmansen_?label=Follow&style=social)](https://twitter.com/luqmansen_)
 
 <p align="center">
     <img src="https://github.com/luqmansen/Hanako/raw/master/docs/assets/hanako-super-small.png"/>
